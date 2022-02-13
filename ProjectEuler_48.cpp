@@ -1,22 +1,23 @@
 #include <iostream>
 using namespace std;
-
-
+#define D_NUMBER 10000000000;
 
 int main()
 {
-    //unsigned long long int series[1000]{0};
-    unsigned long long sum = 0;
-    for (signed long long a = 1; a <= 1000; a++)
+    long long int sum = 0, result = 0;
+    for (int i = 1; i < 1000; i++)
     {
-        unsigned long long i = 1;
-        for (unsigned long long n = 1; n <= a; n++)
+        if (i%10 != 0)
         {
-            i *= a;
+            sum = i;
+            for (int j = 1; j < i; j++)
+            {
+                sum = (sum * i) % D_NUMBER;
+            }
+            result = (result + sum) % D_NUMBER;
+            sum = 0;
         }
-        sum += i;
-        cout << sum << endl;
     }
-
+    cout << result;
     return 0;
 }
